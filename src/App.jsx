@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 function App() {
   const [users, setUsers] = useState([]);
   const [userSelected, setUserSelected] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     axios.get("https://users-crud1.herokuapp.com/users/")
@@ -22,6 +23,7 @@ function App() {
 
   const selectUser = (user) => {
     setUserSelected(user);
+    setOpenModal(true);
     console.log(user);
   };
 
@@ -31,8 +33,6 @@ function App() {
     axios.delete(`https://users-crud1.herokuapp.com/users/${userSelected.id}/`, userSelected)
      .then(() => getUser());
   }
-
-  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="App">
